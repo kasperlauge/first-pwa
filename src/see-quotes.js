@@ -17,12 +17,12 @@ class SeeQuotes extends PolymerElement {
   constructor() {
     super();
     import('./single-quote.js');
-    fetch("https://firestore.googleapis.com/v1beta1/projects/gruppe5-citater/databases/(default)/documents/quotes")
+    fetch("https://gruppe5-citater.firebaseio.com/quotes.json")
     .then(res => res.json())
     .then(json => {
       const arr = [];
-      for (let quote of json.documents) {
-        arr.push({said: quote.fields.said.stringValue, by: quote.fields.by.stringValue})
+      for (let quote in json) {
+        arr.push(json[quote]);
       }
       this.data = arr;
     });

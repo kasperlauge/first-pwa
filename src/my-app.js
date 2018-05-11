@@ -95,7 +95,7 @@ class MyApp extends PolymerElement {
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
               <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
-              <div main-title="">Gruppe 5 citater 🙂</div>
+              <div main-title="">Gruppe5 citater 🙂</div>
             </app-toolbar>
           </app-header>
 

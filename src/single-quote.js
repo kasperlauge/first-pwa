@@ -27,10 +27,9 @@ class SingleQuote extends PolymerElement {
         }
       </style>
 
-      <div>
-        <h1>🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂🙂</h1>
-        <h2>[[said]]</h2>
-        <h2>- [[by]]</h2>
+      <div class="card">
+        <p>[[said]]</p>
+        <p>Sagt af: [[by]]</p>
       </div>
     `;
   }
