@@ -70,9 +70,15 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         line-height: 36px;
         padding: 0 16px;
         border-radius: 2px;
-        border: solid 1px black;
         overflow: visible;
         background-color: #4285f4;
+      }
+      
+      .refresh-list {
+        text-align: center;
+        margin: 10px;
+        display: none;
+        transition: height 0.05s ease-in;
       }
 
       .toast {

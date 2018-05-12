@@ -10,14 +10,23 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
+import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import './shared-styles.js';
 
-class SeeQuotes extends PolymerElement {
+class SeeQuotes extends GestureEventListeners(PolymerElement) {
 
   constructor() {
     super();
     import('./single-quote.js');
-    fetch("https://gruppe5-citater.firebaseio.com/quotes.json")
+    this.startPress = null;
+    this.endPress = null;
+    this.gesturing = 'none';
+    this.toasterOpacity = 0;
+    this.fetchQuotes();
+  }
+
+  fetchQuotes() {
+    fetch(`https://gruppe5-citater.firebaseio.com/quotes.json`)
     .then(res => res.json())
     .then(json => {
       const arr = [];
@@ -25,10 +34,19 @@ class SeeQuotes extends PolymerElement {
         arr.push(json[quote]);
       }
       this.data = arr;
+      this.gesturing = 'none';
+      this.toasterOpacity = 0;
     });
   }
 
+  refresh() {
+    this.gesturing = "block";
+    this.toasterOpacity = 1;
+    this.fetchQuotes();
+  }
+
   static get template() {
+    console.log("template");
     return html`
       <style include="shared-styles">
         :host {
@@ -37,9 +55,12 @@ class SeeQuotes extends PolymerElement {
           padding: 10px;
         }
       </style>
-
+      <div class="toast" style$="opacity: {{toasterOpacity}}; display: {{gesturing}};">
+        <h5>Opdaterer 🙂🙂🙂...</h5>
+      </div>
       <div class="card">
         <h1>Se alle citater sagt i gruppen her 🙂</h1>
+        <button class="submit-button" on-click="refresh">Opdatér🙂</button>
         <template is="dom-repeat" items="{{data}}">
           <single-quote said=[[item.said]] by=[[item.by]]></single-quote>
         </template>
@@ -51,6 +72,12 @@ class SeeQuotes extends PolymerElement {
     return {
       data: {
         type: String
+      },
+      toasterOpacity: {
+        type: Number
+      },
+      gesturing: {
+        type: Boolean
       }
     };
   }

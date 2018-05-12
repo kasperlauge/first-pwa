@@ -2,7 +2,7 @@
 	"name": "Gruppe5 Citater",
 	"short_name": "G5C",
 	"description": "En app indeholdende guldkorn fra gruppe 5",
-	"dir": "rtl",
+	"dir": "ltr",
 	"lang": "da-dk",
 	"orientation": "portrait",
 	"prefer_related_applications": false,
